@@ -27,16 +27,72 @@ This demonstrates the cconnection of MySQL database and Node.js to create a simp
 
    
    // Question 1 goes here
+```js
+   app.get("/patients",(req,res)=>{
+
+    db.query('SELECT * FROM patients', (err,response)=>{
+        if(err){
+            console.err("Error receiving data");
+            res.status(500).send('Error retrieving data')
+        }else{
+            res.render('data', {results:response});
+        }
+    })
+
+ });
+
+ 
 
 
    // Question 2 goes here
 
+   
+
+   app.get("/providers",(req,res)=>{
+
+    db.query('SELECT * FROM providers', (err,response)=>{
+        if(err){
+            console.err("Error receiving data");
+            res.status(500).send('Error retrieving data')
+        }else{
+            res.render('data', {results:response});
+        }
+    })
+
+ })
+
 
    // Question 3 goes here
+
+   app.get("/patientsFirstNames",(req,res)=>{
+
+    db.query('SELECT first_name FROM patients', (err,response)=>{
+        if(err){
+            console.err("Error receiving data");
+            res.status(500).send('Error retrieving data')
+        }else{
+            res.render('data', {results:response});
+        }
+    })
+
+ });
 
 
    // Question 4 goes here
 
+
+app.get("/provider_specialty",(req,res)=>{
+
+    db.query('SELECT provider_specialty FROM providers', (err,response)=>{
+        if(err){
+            console.error("Error receiving data");
+            res.status(500).send('Error retrieving data')
+        }else{
+            res.render('data', {results:response});
+        }
+    })
+
+ });
    
 
    // listen to the server
